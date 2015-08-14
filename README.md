@@ -20,4 +20,4 @@ Polygon ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227
 
 POLYGON ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227000))
 
-pdal tindex --merge /home/stefan/tmp/lidar/srs/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227000))" tmp.las
+pdal tindex --merge /home/stefan/tmp/lidar/srs/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227000))" tmp2.las
