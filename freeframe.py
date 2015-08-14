@@ -47,7 +47,8 @@ for feat in lyr:
     max_y = int(env[3] + 0.001)
 
     # Creat new file name.
-    filename_lv95 = "LAS_" + str(min_x/1000 + 2000) + "_" + str(min_x/1000 + 1000) + ".laz"
+    filename_lv95 = "LAS_" + str(min_x/1000 + 2000) + "_" + str(min_y/1000 + 1000) + ".laz"
+    print filename_lv95
 
     #polygon = feat.GetGeometryRef().Buffer(2,1).ExportToWkt()
     #print polygon
