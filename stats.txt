@@ -1,0 +1,40 @@
+# Mehr oder weniger Original
+
+*** LAS_594228.laz ***
+/home/stefan/tmp/LAS_2594_1228.laz
+pdal tindex --merge /home/stefan/tmp/lidar/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593998 227998,593998 229002,595002 229002,595002 227998,593998 227998))" --t_srs EPSG:21781 /tmp/tmp.las
+141.176845074
+pdal translate --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=2600000 +y_0=1200000 +towgs84=674.374,15.056,405.346 +units=m +k_0=1 +nadgrids=@null" -z -i /tmp/tmp.las -o /tmp/tmp_lv95.laz
+173.546612978
+pdal translate --a_srs EPSG:2056 --t_srs EPSG:2056 --writers.las.format="1" --polygon "POLYGON ((2593999.99 1227999.99,2593999.99 1229000,2595000 1229000,2595000 1227999.99,2593999.99 1227999.99))" -z -i /tmp/tmp_lv95.laz -o /home/stefan/tmp/LAS_2594_1228.laz
+197.845462084
+
+
+# Original OHNE Kompression beim zweiten Schritt
+
+*** LAS_594228.laz ***
+/home/stefan/tmp/LAS_2594_1228.laz
+pdal tindex --merge /home/stefan/tmp/lidar/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593998 227998,593998 229002,595002 229002,595002 227998,593998 227998))" --t_srs EPSG:21781 /tmp/tmp.las
+139.706495047
+pdal translate --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=2600000 +y_0=1200000 +towgs84=674.374,15.056,405.346 +units=m +k_0=1 +nadgrids=@null" -i /tmp/tmp.las -o /tmp/tmp_lv95.las
+168.775080919
+pdal translate --a_srs EPSG:2056 --t_srs EPSG:2056 --writers.las.format="1" --polygon "POLYGON ((2593999.99 1227999.99,2593999.99 1229000,2595000 1229000,2595000 1227999.99,2593999.99 1227999.99))" -z -i /tmp/tmp_lv95.las -o /home/stefan/tmp/LAS_2594_1228.laz
+187.158449888
+
+# Mit --bounds beim letzen Aufruf
+*** LAS_594228.laz ***
+/home/stefan/tmp/LAS_2594_1228.laz
+pdal tindex --merge /home/stefan/tmp/lidar/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593998 227998,593998 229002,595002 229002,595002 227998,593998 227998))" --t_srs EPSG:21781 /tmp/tmp.las
+140.096572876
+pdal translate --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=2600000 +y_0=1200000 +towgs84=674.374,15.056,405.346 +units=m +k_0=1 +nadgrids=@null" -i /tmp/tmp.las -o /tmp/tmp_lv95.las
+169.388119936
+pdal translate --a_srs EPSG:2056 --t_srs EPSG:2056 --writers.las.format="1" --bounds "([2594000, 2595000], [1228000, 1229000])" -z -i /tmp/tmp_lv95.las -o /home/stefan/tmp/LAS_2594_1228.laz
+184.376680851
+
+# Mit --bounds (musste ich zuerst fixen) beim ersten Aufruf
+pdal tindex --merge /home/stefan/tmp/lidar/tileindex.gpkg --lyr_name tileindex --bounds "([593998, 595002], [227998, 229002])" --t_srs EPSG:21781 /tmp/tmp.las
+107.900753021
+pdal translate --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=2600000 +y_0=1200000 +towgs84=674.374,15.056,405.346 +units=m +k_0=1 +nadgrids=@null" -i /tmp/tmp.las -o /tmp/tmp_lv95.las
+138.198717117
+pdal translate --a_srs EPSG:2056 --t_srs EPSG:2056 --writers.las.format="1" --bounds "([2594000, 2595000], [1228000, 1229000])" -z -i /tmp/tmp_lv95.las -o /home/stefan/tmp/LAS_2594_1228.laz
+153.314042091

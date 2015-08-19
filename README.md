@@ -21,3 +21,8 @@ Polygon ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227
 POLYGON ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227000))
 
 pdal tindex --merge /home/stefan/tmp/lidar/srs/tileindex.gpkg --lyr_name tileindex --polygon "POLYGON ((593000 227000, 594000 227000, 594000 228000, 593000 228000, 593000 227000))" tmp2.las
+
+
+
+
+find . -maxdepth 1 -iname "*.laz" | pdal tindex tileindex.gpkg -f "GPKG" --fast_boundary --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --stdin --lyr_name tileindex
