@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pipeline version="1.0">
+  <Writer type="writers.text">
+    <Option name="filename">output.js</Option>
+    <Option name="format">geojson</Option>
+    <Option name="order">X,Y,Z, GpsTime, PointSourceId</Option>
+    <Option name="keep_unspecified">false</Option>
+    <Reader type="readers.las">
+      <Option name="filename">/tmp/tmp_lv03.las</Option>
+      <Option name="flip_coordinates">false</Option>
+    </Reader>
+  </Writer>
+</Pipeline>
