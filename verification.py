@@ -24,12 +24,12 @@ SWISSTOPO_URL = "http://geodesy.geo.admin.ch/reframe/lv03tolv95?format=json"
 LAYERNAME = "tileindex"
 TEMP_DIR = "/tmp/"
 
-TILEINDEX = "/home/stefan/tmp/lidar_verifikation/lv03/tileindex.gpkg"
-LV03_DIR = "/home/stefan/tmp/lidar_verifikation/lv03/"
-LV95_DIR = "/home/stefan/tmp/lidar_verifikation/lv95/"
-OUT_DIR = "/home/stefan/tmp/"
-
-BUFFER = 2
+#TILEINDEX = "/home/stefan/tmp/lidar_verifikation/lv03/tileindex.gpkg"
+#LV03_DIR = "/home/stefan/tmp/lidar_verifikation/lv03/"
+#LV95_DIR = "/home/stefan/tmp/lidar_verifikation/lv95/"
+TILEINDEX = "/home/stefan/Projekte/brw_lidar/tileindex/tileindex.gpkg"
+LV03_DIR = "/home/stefan/mr_candie_nas/Geodaten/ch/so/agi/hoehen/2014/lidar/"
+LV95_DIR = "/home/stefan/mr_candie_nas/Geodaten/ch/so/agi/hoehen/2014/lidar_lv95/"
 
 def lv03_to_lv95(point):
     source = osr.SpatialReference()
@@ -171,7 +171,7 @@ def main():
                     dx_cm = (x_lv95 - round(x_lv95_trans, 2)) * 100
                     dy_cm = (y_lv95 - round(y_lv95_trans, 2)) * 100
 
-                    # We can double check the transformation with swisstopo rest transformation service.
+                    # We can double check the transformation with the swisstopo rest transformation service.
                     # It uses the 'real' transformation method with triangles. Hence we will get some differences.
                     # How to check if this is still ok?
                     # Get the accuracy of the ntv2 transformation from a 100m x 100m raster file which we used
@@ -181,7 +181,6 @@ def main():
                     fs_cm = get_ntv2_accuracy(point_lv95)
                     if not fs_cm:
                         fs_cm = -9999
-
 
                     # Make the LV03 -> LV95 request.
                     url = SWISSTOPO_URL + "&easting="+str(x_lv03)+"&northing="+str(y_lv03)
@@ -204,5 +203,8 @@ def main():
         if k <> 10:
             print "WARNING: Identified %u points. Should be 10." % (k)
 
+        stop = timeit.default_timer()
+        print stop - start
+            
 if __name__ == '__main__':
     sys.exit(main())

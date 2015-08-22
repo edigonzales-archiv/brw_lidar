@@ -21,7 +21,6 @@ TEMPDIR = "/tmp/"
 TILEINDEX = "/home/stefan/tmp/lidar/tileindex.gpkg"
 OUTDIR = "/home/stefan/tmp/"
 
-
 #TILEINDEX = "/home/stefan/Projekte/brw_lidar/tileindex/tileindex.gpkg"
 #OUTDIR = "/home/stefan/mr_candie_nas/Geodaten/ch/so/agi/hoehen/2014/lidar_lv95/"
 
