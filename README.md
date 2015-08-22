@@ -27,5 +27,7 @@ pdal tindex --merge /home/stefan/tmp/lidar/srs/tileindex.gpkg --lyr_name tileind
 
 find . -maxdepth 1 -iname "*.laz" | pdal tindex tileindex.gpkg -f "GPKG" --fast_boundary --a_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --t_srs "+proj=somerc +lat_0=46.952405555555555N +lon_0=7.439583333333333E +ellps=bessel +x_0=600000 +y_0=200000 +towgs84=674.374,15.056,405.346 +units=m +units=m +k_0=1 +nadgrids=./chenyx06/chenyx06a.gsb" --stdin --lyr_name tileindex
 
+find . -maxdepth 1 -iname "*.laz" | pdal tindex tileindex.gpkg -f "GPKG" --fast_boundary --a_srs EPSG:21781 --t_srs EPSG:21781 --stdin --lyr_name tileindex
+
 
 gdal_rasterize -a fs_mm -tr 100.0 100.0 -l centroids_diff_solothurn -a_nodata -9999 /home/stefan/tmp/ntv2/centroids_diff_solothurn.shp /home/stefan/Downloads/ntv2_genauigkeit.tif
