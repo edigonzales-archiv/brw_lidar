@@ -54,7 +54,6 @@ def get_ntv2_accuracy(point):
     mx = point.GetX()
     my = point.GetY()
 
-
     px = int((mx - gt[0]) / gt[1]) #x pixel
     py = int((my - gt[3]) / gt[5]) #y pixel
 
@@ -145,16 +144,16 @@ def main():
                 intensity_lv95 = map_lv95[j]['Intensity']
                 classification_lv95 = map_lv95[j]['Classification']
 
-                x_lv95 = float(map_lv95[i]['X'])
-                y_lv95 = float(map_lv95[i]['Y'])
-                z_lv95 = map_lv95[i]['Z']
+                x_lv95 = float(map_lv95[j]['X'])
+                y_lv95 = float(map_lv95[j]['Y'])
+                z_lv95 = map_lv95[j]['Z']
 
                 # Try to identify the same point in LV03 and LV95.
-                # Since there is no real unique identifier (?) we use different
+                # Since there is no real unique identifier (?) we use several
                 # attributes (and even the heigth).
                 # If we found the same point (actually it should be one point only!)
                 # we can transform LV03 to LV95 and compare the coordinates.
-                if gpstime_lv03 == gpstime_lv95 and intensity_lv03 == intensity_lv95 and classification_lv03 == classification_lv95 and z_lv03 == z_lv95:
+                if gpstime_lv03 == gpstime_lv95 and intensity_lv03 == intensity_lv95 and classification_lv03 == classification_lv95 and int(z_lv03*100) == int(z_lv95*100):
                     point_lv03 = ogr.Geometry(ogr.wkbPoint)
                     point_lv03.AddPoint(x_lv03, y_lv03)
 
@@ -197,12 +196,14 @@ def main():
                     print "%s, %s, %s, %s, %s, %f, %f, %f, %f, %f, %f, %.1f, %.1f, %.1f, %.1f, %.1f" % (os.path.basename(filename), gpstime_lv03, intensity_lv03, classification_lv03, z_lv03, x_lv95, y_lv95, x_lv95_trans, y_lv95_trans, x_lv95_swisstopo, y_lv95_swisstopo, dx_cm, dy_cm, dx_cm_swisstopo, dy_cm_swisstopo, fs_cm)
                     k += 1
 
+
+
         # If k <> 10 we either have some false identification (> 10) or we did not found some points.
         if k <> 10:
             print "WARNING: Identified %u points. Should be 10." % (k)
 
         stop = timeit.default_timer()
-        print stop - start
+        #print stop - start
 
 if __name__ == '__main__':
     sys.exit(main())
