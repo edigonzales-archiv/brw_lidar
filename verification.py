@@ -115,7 +115,6 @@ def main():
         point_lv95 = lv03_to_lv95(point_lv03)
 
         # Dump 10 nearest lidar points in LV03.
-        info_file_lv03 = os.path.join(TEMP_DIR, "info_lv03.json")
         query = str(point_lv03.GetX()) + "," + str(point_lv03.GetY()) + "/10"
         cmd = 'pdal info --query ' + query + ' ' + filename_lv03
         proc = Popen(cmd, shell=True, stdout=PIPE)
@@ -123,7 +122,6 @@ def main():
         map_lv03 = json.loads(output)['unnamed']
 
         # Dump 10 nearest lidar points in LV95.
-        info_file_lv95 = os.path.join(TEMP_DIR, "info_lv95.json")
         query = str(point_lv95.GetX()) + "," + str(point_lv95.GetY()) + "/10"
         cmd = 'pdal info --query ' + query + ' ' + filename_lv95
         proc = Popen(cmd, shell=True, stdout=PIPE)
@@ -205,6 +203,6 @@ def main():
 
         stop = timeit.default_timer()
         print stop - start
-            
+
 if __name__ == '__main__':
     sys.exit(main())
