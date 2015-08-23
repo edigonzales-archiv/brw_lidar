@@ -121,7 +121,12 @@ def main():
         map_lv03 = json.loads(output)['unnamed']
 
         # Dump 10 nearest lidar points in LV95.
-        query = str(point_lv95.GetX()) + "," + str(point_lv95.GetY()) + "/10"
+        #query = str(point_lv95.GetX()) + "," + str(point_lv95.GetY()) + "/10"
+        # We have to round the point b/c all the points in
+        # the transformed lidar files are scaled to cm.
+        # Since we will look for the 10 nearest points, the distance
+        # in LV03 and LV95 can be different (cm vs. mm).
+        query = str(round(point_lv95.GetX(),2)) + "," + str(round(point_lv95.GetY(),2)) + "/10"
         cmd = 'pdal info --query ' + query + ' ' + filename_lv95
         proc = Popen(cmd, shell=True, stdout=PIPE)
         output = proc.communicate()[0]
